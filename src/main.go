@@ -43,6 +43,19 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 		c.JSON(200, gin.H{"article": article})
 	}
 }
+func EditArticlesHandler(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		title := c.PostForm("title")
+		content := c.PostForm("content")
+		if title == "" || content == "" {
+			c.JSON(401, gin.H{"msg": "文章的标题和内容不能为空"})
+			return
+		}
+		newarticle := Article{Title: title, Content: content}
+		db.Create(&newarticle)
+		c.JSON(200, gin.H{"msg": "add article success"})
+	}
+}
 func main() {
 	r := gin.New()
 	db, err := gorm.Open("sqlite3", "../data.db")
@@ -50,6 +63,7 @@ func main() {
 		log.Println(err)
 	}
 	defer db.Close()
+	r.POST("/api/admin", EditArticlesHandler(db))
 	r.GET("/api/articles", GetArticlesHandler(db))
 	r.GET("/api/article/:id", GetSingleArticleHandler(db))
 	r.Run(":3000")

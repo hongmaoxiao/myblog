@@ -1,3 +1,4 @@
+import 'github-markdown-css';
 import Vue from 'vue';
 import vueResource from 'vue-resource';
 import VueRouter from 'vue-router';
