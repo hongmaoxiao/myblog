@@ -10,22 +10,16 @@
       };
     },
     created() {
-      this.$http.get(`/api/article/${this.$route.params.id}`)
+      this.$http.get(`/article/${this.$route.params.id}`)
         .then((data) => {
-          console.log(data.body.article.Content);
           this.title = data.body.article.Title;
           this.rawarticle = data.body.article.Content;
         }, (error) => {
           console.log(error);
         });
     },
-    /*
-     * computed: {
-     *   parseMarkdown: () => marked(this.rawarticle, { sanitize: true }),
-     * },
-     */
     computed: {
-      parseMarkdown: function () {
+      parseMarkdown() {
         return marked(this.rawarticle, { sanitize: true });
       },
     },
@@ -35,7 +29,7 @@
   <div class="articles-wrapper">
     <div class="article">
       <h1 class="article-title">{{title}}</h1>
-      <p class="article-con" v-html="parseMarkdown"></p>
+      <p class="article-con markdown-body" v-html="parseMarkdown"></p>
     </div>
   </div>
 </template>
@@ -54,5 +48,6 @@
   text-align: left;
   border: 1px solid #ddd;
   padding: 20px;
+  border-radius: 6px;
 }
 </style>

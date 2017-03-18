@@ -17,7 +17,7 @@
       };
     },
     mounted() {
-      this.$http.get('/api/articles')
+      this.$http.get('/articles')
         .then((data) => {
           console.log(data);
           this.articles = data.body.articles;

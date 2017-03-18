@@ -95,7 +95,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     proxy: {
-      "/api": "http://localhost:3000",
+      "/": "http://localhost:3000",
     }
   },
 };

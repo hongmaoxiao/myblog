@@ -3,12 +3,16 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"strconv"
 
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
+
+var mux = http.NewServeMux()
 
 type Article struct {
 	gorm.Model
@@ -57,14 +61,15 @@ func EditArticlesHandler(db *gorm.DB) gin.HandlerFunc {
 	}
 }
 func main() {
-	r := gin.New()
-	db, err := gorm.Open("sqlite3", "../data.db")
+	r := gin.Default()
+	r.Use(static.Serve("/", static.LocalFile("./dist/static", true)))
+	db, err := gorm.Open("sqlite3", "./data.db")
 	if err != nil {
 		log.Println(err)
 	}
 	defer db.Close()
-	r.POST("/api/admin", EditArticlesHandler(db))
-	r.GET("/api/articles", GetArticlesHandler(db))
-	r.GET("/api/article/:id", GetSingleArticleHandler(db))
+	r.POST("/admin", EditArticlesHandler(db))
+	r.GET("/articles", GetArticlesHandler(db))
+	r.GET("/article/:id", GetSingleArticleHandler(db))
 	r.Run(":3000")
 }

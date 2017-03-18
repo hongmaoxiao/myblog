@@ -2,7 +2,7 @@
   <div class="articles-wrapper clearfix">
     <div class="edit-article clearfix">
       <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300></textarea>
-      <p class="parsed-article pull-right" v-html="parseMarkdown"></p>
+      <p class="parsed-article markdown-body pull-right" v-html="parseMarkdown"></p>
       <button @click="completeArticle" class="complete-article">提交</button>
     </div>
   </div>
@@ -17,7 +17,7 @@
       };
     },
     computed: {
-      parseMarkdown: function () {
+      parseMarkdown() {
         return marked(this.rawarticle, { sanitize: true });
       },
     },
@@ -26,11 +26,11 @@
         if (!this.rawarticle) {
           return;
         }
-        this.$http.post('/api/admin', {
-          title: "test article",
+        this.$http.post('/admin', {
+          title: 'test article',
           content: this.rawarticle,
         })
-        .then((data) => {
+        .then(() => {
           this.rawarticle = '';
         }, (error) => {
           console.log(error);
