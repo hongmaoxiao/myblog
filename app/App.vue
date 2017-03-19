@@ -1,9 +1,15 @@
 <script>
+import Common from './components/header';
+
 export default {
+  components: {
+    Common,
+  },
 };
 </script>
 <template>
   <div id="app">
+    <Common />
     <router-view></router-view>
   </div>
 </template>
@@ -11,7 +17,7 @@ export default {
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 html{
   height: 100%;
@@ -20,8 +26,24 @@ html{
 body{
   position: relative;
   zoom: 1;
-  width: 100%;
   height: 100%;
+  margin: auto;
+}
+@media screen and (max-width: 700px) {
+  body {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 700px) {
+  body {
+    width: 100%;
+    max-width: 1200px;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1200px) {
+  body {
+    width: 95%;
+  }
 }
 a:link,
 a:visited,
@@ -36,6 +58,8 @@ a:active{
 }
 ul{
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .pull-left{
   float: left;

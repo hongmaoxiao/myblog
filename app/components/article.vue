@@ -1,13 +1,11 @@
 <template>
-  <div class="articles-wrapper">
-    <div class="articles">
-      <ul>
-        <li v-for="article in articles" class="clearfix">
-          <router-link :to="{ name: 'article', params: {id: article.ID} }">{{article.Title}}</router-link>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <section class="articles-wrapper items">
+    <ul class="articles">
+      <li v-for="article in articles">
+        <router-link :to="{ name: 'article', params: {id: article.ID} }">{{article.Title}}</router-link>
+      </li>
+    </ul>
+  </section>
 </template>
 <script>
   export default {
@@ -19,7 +17,6 @@
     mounted() {
       this.$http.get('/articles')
         .then((data) => {
-          console.log(data);
           this.articles = data.body.articles;
         }, (error) => {
           console.log(error);
@@ -30,28 +27,28 @@
 </script>
 <style>
 .articles-wrapper {
-  margin-top: 70px;
-  width: 100%;
-  overflow: hidden;
-  float: left;
+  margin: 2em 10px;
   position: relative;
 }
+.items {
+  margin: 3em 10px;
+}
 .articles{
-  float: left;
-  width: 60%;
-  margin-left: 8%;
   text-align: left;
   border: 1px solid #ddd;
 }
 
-.articles > ul > li{
-  padding: 6px 12px;
-  line-height: 30px;
+.articles > li{
+  padding: 0 12px;
+  line-height: 3em;
   position: relative;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-.articles > ul > li:last-child{
+.articles > li:last-child{
   border-bottom: 0;
+}
+.articles > li > a {
+  display: block;
 }
 </style>
