@@ -27,7 +27,7 @@
           return;
         }
         this.$http.post('/admin', {
-          title: 'test article',
+          title: 'aaaaaaaaaaa',
           content: this.rawarticle,
         })
         .then(() => {
@@ -42,15 +42,15 @@
 <style scoped>
 .edit-article {
   position: relative;
-  width: 80%;
   margin: 0 auto;
   padding-bottom: 50px;
 }
 .parsed-article,
 .raw-article {
-  width: 47.5%;
+  width: 48.5%;
   border: 1px solid #ddd;
   padding: 20px;
+  box-sizing: border-box;
 }
 .raw-article {
   min-height: 500px;

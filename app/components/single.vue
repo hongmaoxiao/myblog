@@ -8,6 +8,8 @@
         rawarticle: '""',
         title: '',
         created: '',
+        prev: '',
+        next: '',
       };
     },
     created() {
@@ -17,6 +19,8 @@
           this.title = data.body.article.Title;
           this.rawarticle = data.body.article.Content;
           this.created = data.body.article.CreatedAt;
+          this.prev = data.body.prev === 0 ? '' : data.body.prev;
+          this.next = data.body.next === 0 ? '' : data.body.next;
         }, (error) => {
           console.log(error);
         });
@@ -35,6 +39,10 @@
       <p class="created">{{created}}</p>
       <p class="article-con markdown-body" v-html="parseMarkdown"></p>
     </article>
+    <footer>
+      <router-link v-if="prev" :to="{name: 'article', params: {id: prev}}">前一篇</router-link>
+      <router-link v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
+    </footer>
   </section>
 </template>
 <style scoped>
