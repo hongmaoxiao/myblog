@@ -56,4 +56,9 @@
 .articles > li:hover {
   background: #f7f7f7;
 }
+@media screen and (max-width: 700px) {
+  .articles-wrapper {
+    margin: 3em 10px;
+  }
+}
 </style>
