@@ -33,22 +33,27 @@
 .items {
   margin: 3em 10px;
 }
-.articles{
+.articles {
   text-align: left;
   border: 1px solid #ddd;
+  box-shadow: 0 3px 15px #ccc;
 }
 
-.articles > li{
-  padding: 0 12px;
+.articles > li {
   line-height: 3em;
   position: relative;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
-.articles > li:last-child{
+.articles > li:last-child {
   border-bottom: 0;
 }
 .articles > li > a {
+  padding: 0 15px;
   display: block;
+}
+.articles > li:hover {
+  background: #f7f7f7;
 }
 </style>

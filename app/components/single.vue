@@ -12,23 +12,31 @@
         next: '',
       };
     },
-    created() {
-      this.$http.get(`/article/${this.$route.params.id}`)
-        .then((data) => {
-          console.log(data);
-          this.title = data.body.article.Title;
-          this.rawarticle = data.body.article.Content;
-          this.created = data.body.article.CreatedAt;
-          this.prev = data.body.prev === 0 ? '' : data.body.prev;
-          this.next = data.body.next === 0 ? '' : data.body.next;
-        }, (error) => {
-          console.log(error);
-        });
-    },
     computed: {
       parseMarkdown() {
         return marked(this.rawarticle, { sanitize: true });
       },
+    },
+    watch: {
+      "$route": "fetchData",
+    },
+    created() {
+      this.fetchData();
+    },
+    methods: {
+      fetchData() {
+        this.$http.get(`/article/${this.$route.params.id}`)
+          .then((data) => {
+            console.log(data);
+            this.title = data.body.article.Title;
+            this.rawarticle = data.body.article.Content;
+            this.created = data.body.article.CreatedAt;
+            this.prev = data.body.prev === 0 ? '' : data.body.prev;
+            this.next = data.body.next === 0 ? '' : data.body.next;
+          }, (error) => {
+            console.log(error);
+          });
+      }
     },
   };
 </script>
@@ -48,12 +56,13 @@
 <style scoped>
 .article-title {
   text-align: center;
-  font-size: 32px;
+  font-size: 25px;
   line-height: 1.5em;
+  word-wrap: break-word;
 }
 .created {
   font-size: 16px;
-  margin: 1em 0 1.5em;
+  margin: 0.6em 0 1em;
   line-height: 1.5em;
   text-align: center;
   color: #5f6465;
@@ -66,6 +75,7 @@
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 6px;
+  box-shadow: 0 3px 15px #ccc;
 }
 footer > a {
   padding: 3px 15px;
