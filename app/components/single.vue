@@ -39,9 +39,9 @@
       <p class="created">{{created}}</p>
       <p class="article-con markdown-body" v-html="parseMarkdown"></p>
     </article>
-    <footer>
-      <router-link v-if="prev" :to="{name: 'article', params: {id: prev}}">前一篇</router-link>
-      <router-link v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
+    <footer class="clearfix">
+      <router-link class="prev pull-left" v-if="prev" :to="{name: 'article', params: {id: prev}}">前一篇</router-link>
+      <router-link class="next pull-right" v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
     </footer>
   </section>
 </template>
@@ -66,5 +66,21 @@
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 6px;
+}
+footer > a {
+  padding: 3px 15px;
+  background: #969595;
+  border-radius: 15px;
+  line-height: 1.5em;
+  color: #fff;
+}
+footer > a:hover{
+  background: #696666;
+}
+.prev {
+  margin: 30px 0 30px 50px;
+}
+.next {
+  margin: 30px 50px 30px 0;
 }
 </style>
