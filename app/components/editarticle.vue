@@ -1,11 +1,11 @@
 <template>
-  <div class="articles-wrapper clearfix">
-    <div class="edit-article clearfix">
+  <section class="articles-wrapper clearfix" v-title :data-title='"后台管理"'>
+    <article class="edit-article clearfix">
       <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300></textarea>
       <p class="parsed-article markdown-body pull-right" v-html="parseMarkdown"></p>
       <button @click="completeArticle" class="complete-article">提交</button>
-    </div>
-  </div>
+    </article>
+  </section>
 </template>
 <script>
   import marked from 'marked';
@@ -27,7 +27,7 @@
           return;
         }
         this.$http.post('/admin', {
-          title: 'aaaaaaaaaaa',
+          title: 'new',
           content: this.rawarticle,
         })
         .then(() => {

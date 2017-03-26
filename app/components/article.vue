@@ -1,5 +1,5 @@
 <template>
-  <section class="articles-wrapper items">
+  <section class="articles-wrapper items" v-title>
     <ul class="articles">
       <li v-for="article in articles">
         <router-link :to="{ name: 'article', params: {id: article.ID} }">{{article.Title}}</router-link>
@@ -21,7 +21,6 @@
         }, (error) => {
           console.log(error);
         });
-      console.log(this.articles);
     },
   };
 </script>

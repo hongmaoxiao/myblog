@@ -5,7 +5,7 @@
   export default {
     data() {
       return {
-        rawarticle: '""',
+        rawarticle: '',
         title: '',
         created: '',
         prev: '',
@@ -27,7 +27,6 @@
       fetchData() {
         this.$http.get(`/article/${this.$route.params.id}`)
           .then((data) => {
-            console.log(data);
             this.title = data.body.article.Title;
             this.rawarticle = data.body.article.Content;
             this.created = data.body.article.CreatedAt;
@@ -41,7 +40,7 @@
   };
 </script>
 <template>
-  <section class="articles-wrapper">
+  <section class="articles-wrapper" v-title :data-title=title>
     <article class="article">
       <h1 class="article-title">{{title}}</h1>
       <p class="created">{{created}}</p>
