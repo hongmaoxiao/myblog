@@ -1,6 +1,7 @@
 <template>
   <div class="articles-wrapper clearfix">
     <div class="edit-article clearfix">
+      <input class="title" v-model="title" placeholder="请输入文章标题">
       <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300></textarea>
       <p class="parsed-article markdown-body pull-right" v-html="parseMarkdown"></p>
       <button @click="completeArticle" class="complete-article">提交</button>
@@ -13,6 +14,7 @@
   export default {
     data() {
       return {
+        title: '',
         rawarticle: '',
       };
     },
@@ -23,11 +25,11 @@
     },
     methods: {
       completeArticle() {
-        if (!this.rawarticle) {
+        if (!this.rawarticle || !this.title) {
           return;
         }
         this.$http.post('/admin', {
-          title: 'aaaaaaaaaaa',
+          title: this.title,
           content: this.rawarticle,
         })
         .then(() => {
@@ -51,6 +53,11 @@
   border: 1px solid #ddd;
   padding: 20px;
   box-sizing: border-box;
+}
+.title {
+  display: block;
+  margin-bottom: 20px;
+  padding: 6px 12px;
 }
 .raw-article {
   min-height: 500px;
