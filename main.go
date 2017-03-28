@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"math/rand"
 	"net/http"
 	"strconv"
 
@@ -17,8 +16,7 @@ var mux = http.NewServeMux()
 
 type Article struct {
 	gorm.Model
-	// Title   string `gorm:"not null;unique"`
-	Title   string
+	Title   string `gorm:"not null;unique"`
 	Content string
 }
 
@@ -57,7 +55,7 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 		res.ID = article.ID
 		res.Title = article.Title
 		res.Content = article.Content
-		res.CreatedAt = article.CreatedAt.Format("2006-01-02 15:04:05")
+		res.CreatedAt = article.CreatedAt.Format("2006-01-02")
 
 		var prev Article
 		db.Where("id < ?", id_int).Last(&prev)
@@ -71,7 +69,6 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 func EditArticlesHandler(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		title := c.PostForm("title")
-		title = title + string(rand.Int())
 		content := c.PostForm("content")
 		if title == "" || content == "" {
 			c.JSON(401, gin.H{"msg": "文章的标题和内容不能为空"})
