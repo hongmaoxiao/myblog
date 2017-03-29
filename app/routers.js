@@ -3,6 +3,7 @@ const components = {};
 components.article = require('./components/article.vue');
 components.single = require('./components/single.vue');
 components.editarticle = require('./components/editarticle.vue');
+components.login = require('./components/login.vue');
 
 const routers = [
   {
@@ -17,6 +18,10 @@ const routers = [
     path: '/admin',
     name: 'admin',
     component: components.editarticle,
+  }, {
+    path: '/login',
+    name: 'login',
+    component: components.login,
   }, {
     path: '*',
     redirect: '/',

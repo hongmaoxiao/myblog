@@ -1,14 +1,22 @@
 <template>
-  <section class="articles-wrapper items" v-title>
-    <ul class="articles">
-      <li v-for="article in articles">
-        <router-link :to="{ name: 'article', params: {id: article.ID} }">{{article.Title}}</router-link>
-      </li>
-    </ul>
+  <section>
+    <Common />
+    <section class="articles-wrapper items" v-title>
+      <ul class="articles">
+        <li v-for="article in articles">
+          <router-link :to="{ name: 'article', params: {id: article.ID} }">{{article.Title}}</router-link>
+        </li>
+      </ul>
+    </section>
   </section>
 </template>
 <script>
+  import Common from './header';
+
   export default {
+    components: {
+      Common,
+    },
     data() {
       return {
         articles: [],

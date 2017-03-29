@@ -1,8 +1,12 @@
 <script>
   import 'github-markdown-css';
   import marked from 'marked';
+  import Common from './header';
 
   export default {
+    components: {
+      Common,
+    },
     data() {
       return {
         rawarticle: '',
@@ -40,16 +44,19 @@
   };
 </script>
 <template>
-  <section class="articles-wrapper" v-title :data-title=title>
-    <article class="article">
-      <h1 class="article-title">{{title}}</h1>
-      <p class="created">{{created}}</p>
-      <p class="article-con markdown-body" v-html="parseMarkdown"></p>
-    </article>
-    <footer class="clearfix">
-      <router-link class="prev pull-left" v-if="prev" :to="{name: 'article', params: {id: prev}}">前一篇</router-link>
-      <router-link class="next pull-right" v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
-    </footer>
+  <section>
+    <Common />
+    <section class="articles-wrapper" v-title :data-title=title>
+      <article class="article">
+        <h1 class="article-title">{{title}}</h1>
+        <p class="created">{{created}}</p>
+        <p class="article-con markdown-body" v-html="parseMarkdown"></p>
+      </article>
+      <footer class="clearfix">
+        <router-link class="prev pull-left" v-if="prev" :to="{name: 'article', params: {id: prev}}">前一篇</router-link>
+        <router-link class="next pull-right" v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
+      </footer>
+    </section>
   </section>
 </template>
 <style scoped>

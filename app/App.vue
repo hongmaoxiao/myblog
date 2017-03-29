@@ -1,15 +1,5 @@
-<script>
-import Common from './components/header';
-
-export default {
-  components: {
-    Common,
-  },
-};
-</script>
 <template>
   <div id="app">
-    <Common />
     <router-view></router-view>
   </div>
 </template>
