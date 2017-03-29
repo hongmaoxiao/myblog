@@ -33,6 +33,7 @@
           content: this.rawarticle,
         })
         .then(() => {
+          this.title = '';
           this.rawarticle = '';
         }, (error) => {
           console.log(error);
