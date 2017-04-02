@@ -20,6 +20,11 @@ type Article struct {
 	Content string
 }
 
+type User struct {
+	Username string
+	Password string
+}
+
 type QueryArticle struct {
 	ID        uint
 	CreatedAt string
@@ -66,7 +71,7 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 		c.JSON(200, gin.H{"article": res, "prev": prev.ID, "next": next.ID})
 	}
 }
-func EditArticlesHandler(db *gorm.DB) gin.HandlerFunc {
+func NewArticleHandler(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		title := c.PostForm("title")
 		content := c.PostForm("content")
@@ -79,6 +84,20 @@ func EditArticlesHandler(db *gorm.DB) gin.HandlerFunc {
 		c.JSON(200, gin.H{"msg": "add article success"})
 	}
 }
+
+func LoginHandler(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		username := c.PostForm("username")
+		password := c.PostForm("password")
+		var user User
+		db.Where("username = ? and password = ?", username, password).Find(&user)
+		if user.Username == "" || user.Password == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{"login": "fail"})
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{"login": "success"})
+	}
+}
 func main() {
 	r := gin.Default()
 	r.Use(static.Serve("/", static.LocalFile("./dist/static", true)))
@@ -87,8 +106,11 @@ func main() {
 		log.Println(err)
 	}
 	defer db.Close()
-	r.POST("/admin", EditArticlesHandler(db))
 	r.GET("/articles", GetArticlesHandler(db))
 	r.GET("/article/:id", GetSingleArticleHandler(db))
+	r.POST("/login", LoginHandler(db))
+	r.POST("/manages", GetArticlesHandler(db))
+	r.POST("/edit", NewArticleHandler(db))
+	// r.POST("/edit/:id", EditArticleHandler(db))
 	r.Run(":3000")
 }

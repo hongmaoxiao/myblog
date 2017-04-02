@@ -1,23 +1,32 @@
 const components = {};
 
-components.article = require('./components/article.vue');
+components.articles = require('./components/articles.vue');
 components.single = require('./components/single.vue');
 components.editarticle = require('./components/editarticle.vue');
 components.login = require('./components/login.vue');
+components.manages = require('./components/manages.vue');
 
 const routers = [
   {
     path: '/',
     name: 'index',
-    component: components.article,
+    component: components.articles,
   }, {
     path: '/article/:id',
     name: 'article',
     component: components.single,
   }, {
-    path: '/admin',
-    name: 'admin',
+    path: '/edit',
+    name: 'new',
     component: components.editarticle,
+  }, {
+    path: '/edit/:id',
+    name: 'edit',
+    component: components.editarticle,
+  }, {
+    path: '/manages',
+    name: 'manages',
+    component: components.manages,
   }, {
     path: '/login',
     name: 'login',

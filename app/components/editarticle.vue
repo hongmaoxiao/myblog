@@ -28,7 +28,7 @@
         if (!this.rawarticle || !this.title) {
           return;
         }
-        this.$http.post('/admin', {
+        this.$http.post('/edit', {
           title: this.title,
           content: this.rawarticle,
         })
