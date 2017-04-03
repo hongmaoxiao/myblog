@@ -1,5 +1,8 @@
 <template>
   <section class="articles-wrapper edit-wrapper clearfix" v-title :data-title='"后台管理"'>
+    <p class="manages-wrapper">
+      <router-link to="/manages" class="manages">返回管理主页</router-link>
+    </p>
     <article class="edit-article">
       <input class="title" v-model="title" placeholder="请输入文章标题">
       <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300></textarea>
@@ -63,9 +66,6 @@
   };
 </script>
 <style scoped>
-body {
-  width: 100% !important;
-}
 .edit-article {
   position: relative;
   margin: 0 auto;
@@ -92,5 +92,17 @@ body {
   left: 25%;
   margin-left: -28px;
   top: 580px;
+}
+.manages-wrapper {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-item: center;
+}
+.manages {
+  padding: 3px 15px;
+  border-radius: 15px;
+  background: #969696;
+  color: #fff;
 }
 </style>

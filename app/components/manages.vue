@@ -1,8 +1,10 @@
 <template>
   <section>
     <section class="articles-wrapper items" v-title>
-      <router-link to="/edit" class="new">新增</router-link>
-      <ul class="articles">
+      <p class="new-wrapper">
+        <router-link to="/edit" class="new">新增</router-link>
+      </p>
+      <ul class="articles clearfix">
         <li v-for="article in articles">
           <router-link :to="{ name: 'edit', params: {id: article.ID} }">
             <span>{{article.Title}}</span>
@@ -31,10 +33,16 @@
   };
 </script>
 <style>
+.new-wrapper {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 .new {
-  display: block;
-  text-align: right;
-  line-height: 50px;
-  padding-right: 15px;
+  padding: 3px 15px;
+  border-radius: 15px;
+  background: #969696;
+  color: #fff;
 }
 </style>
