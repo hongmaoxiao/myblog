@@ -75,13 +75,20 @@ func NewArticleHandler(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		title := c.PostForm("title")
 		content := c.PostForm("content")
-		if title == "" || content == "" {
-			c.JSON(401, gin.H{"msg": "文章的标题和内容不能为空"})
-			return
+		id := c.PostForm("id")
+		if id == "" {
+			if title == "" || content == "" {
+				c.JSON(401, gin.H{"msg": "文章的标题和内容不能为空"})
+				return
+			}
+			newarticle := Article{Title: title, Content: content}
+			db.Create(&newarticle)
+			c.JSON(200, gin.H{"msg": "add article success"})
+		} else {
+			var article Article
+			db.Model(&article).Where("id = ?", id).Updates(map[string]interface{}{"title": title, "content": content})
+			c.JSON(200, gin.H{"msg": "update article success"})
 		}
-		newarticle := Article{Title: title, Content: content}
-		db.Create(&newarticle)
-		c.JSON(200, gin.H{"msg": "add article success"})
 	}
 }
 

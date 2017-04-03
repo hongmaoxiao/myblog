@@ -1,6 +1,6 @@
 <template>
-  <section class="articles-wrapper clearfix" v-title :data-title='"后台管理"'>
-    <article class="edit-article clearfix">
+  <section class="articles-wrapper edit-wrapper clearfix" v-title :data-title='"后台管理"'>
+    <article class="edit-article">
       <input class="title" v-model="title" placeholder="请输入文章标题">
       <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300></textarea>
       <p class="parsed-article markdown-body pull-right" v-html="parseMarkdown"></p>
@@ -16,12 +16,19 @@
       return {
         title: '',
         rawarticle: '',
+        id: '',
       };
     },
     computed: {
       parseMarkdown() {
         return marked(this.rawarticle, { sanitize: true });
       },
+    },
+    watch: {
+      "$route": "fetchData",
+    },
+    created() {
+      this.fetchData();
     },
     methods: {
       completeArticle() {
@@ -31,18 +38,34 @@
         this.$http.post('/edit', {
           title: this.title,
           content: this.rawarticle,
+          id: this.id,
         })
-        .then(() => {
-          this.title = '';
-          this.rawarticle = '';
+        .then((data) => {
+          console.log(data);
         }, (error) => {
           console.log(error);
         });
       },
+      fetchData() {
+        let id = this.$route.params.id;
+        if (id) {
+          this.id = id;
+          this.$http.get(`/article/${id}`)
+            .then((data) => {
+              this.title = data.body.article.Title;
+              this.rawarticle = data.body.article.Content;
+            }, (error) => {
+              console.log(error);
+            });
+        }
+      }
     },
   };
 </script>
 <style scoped>
+body {
+  width: 100% !important;
+}
 .edit-article {
   position: relative;
   margin: 0 auto;
@@ -68,6 +91,6 @@
   position: absolute;
   left: 25%;
   margin-left: -28px;
-  bottom: 0px;
+  top: 580px;
 }
 </style>

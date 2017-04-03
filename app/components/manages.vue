@@ -31,45 +31,10 @@
   };
 </script>
 <style>
-.articles-wrapper {
-  margin: 2em 10px;
-  position: relative;
-}
 .new {
   display: block;
   text-align: right;
   line-height: 50px;
   padding-right: 15px;
-}
-.items {
-  margin: 3em 10px;
-}
-.articles {
-  text-align: left;
-  border: 1px solid #ddd;
-  box-shadow: 0 3px 15px #ccc;
-}
-
-.articles > li {
-  line-height: 3em;
-  position: relative;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
-.articles > li:last-child {
-  border-bottom: 0;
-}
-.articles > li > a {
-  padding: 0 15px;
-  display: block;
-}
-.articles > li:hover {
-  background: #f7f7f7;
-}
-@media screen and (max-width: 700px) {
-  .articles-wrapper {
-    margin: 3em 10px;
-  }
 }
 </style>
