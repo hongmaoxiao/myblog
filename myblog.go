@@ -41,8 +41,12 @@ func GetArticlesHandler(db *gorm.DB) gin.HandlerFunc {
 		}
 		db.AutoMigrate(&Article{})
 		var articles []Article
-		db.Find(&articles)
+		res := db.Find(&articles)
 
+		if res.Error != nil {
+			c.JSON(401, gin.H{"msg": res.Error})
+			return
+		}
 		c.JSON(200, gin.H{"articles": articles})
 	}
 }
@@ -54,8 +58,11 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 			log.Println(err)
 		}
 		var article Article
-		db.First(&article, id_int)
-
+		query_article := db.First(&article, id_int)
+		if query_article.Error != nil {
+			c.JSON(401, gin.H{"msg": query_article.Error})
+			return
+		}
 		var res QueryArticle
 		res.ID = article.ID
 		res.Title = article.Title
@@ -71,7 +78,7 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 		c.JSON(200, gin.H{"article": res, "prev": prev.ID, "next": next.ID})
 	}
 }
-func NewArticleHandler(db *gorm.DB) gin.HandlerFunc {
+func EditArticleHandler(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		title := c.PostForm("title")
 		content := c.PostForm("content")
@@ -82,11 +89,18 @@ func NewArticleHandler(db *gorm.DB) gin.HandlerFunc {
 				return
 			}
 			newarticle := Article{Title: title, Content: content}
-			db.Create(&newarticle)
+			res := db.Create(&newarticle)
+			if res.Error != nil {
+				c.JSON(401, gin.H{"msg": res.Error})
+				return
+			}
 			c.JSON(200, gin.H{"msg": "add article success"})
 		} else {
-			var article Article
-			db.Model(&article).Where("id = ?", id).Updates(map[string]interface{}{"title": title, "content": content})
+			res := db.Model(&Article{}).Where("id = ?", id).Updates(map[string]interface{}{"title": title, "content": content})
+			if res.Error != nil {
+				c.JSON(401, gin.H{"msg": res.Error})
+				return
+			}
 			c.JSON(200, gin.H{"msg": "update article success"})
 		}
 	}
@@ -99,10 +113,25 @@ func LoginHandler(db *gorm.DB) gin.HandlerFunc {
 		var user User
 		db.Where("username = ? and password = ?", username, password).Find(&user)
 		if user.Username == "" || user.Password == "" {
-			c.JSON(http.StatusUnauthorized, gin.H{"login": "fail"})
+			c.JSON(401, gin.H{"msg": "login fail"})
 			return
 		}
-		c.JSON(http.StatusOK, gin.H{"login": "success"})
+		c.JSON(200, gin.H{"msg": "login success"})
+	}
+}
+func DeleteArticleHandler(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		id := c.Param("id")
+		id_int, err := strconv.Atoi(id)
+		if err != nil {
+			log.Println(err)
+		}
+		res := db.Where("id = ?", id_int).Delete(&Article{})
+		if res.Error != nil {
+			c.JSON(401, gin.H{"msg": res.Error})
+			return
+		}
+		c.JSON(200, gin.H{"msg": "delete article success"})
 	}
 }
 func main() {
@@ -117,7 +146,7 @@ func main() {
 	r.GET("/article/:id", GetSingleArticleHandler(db))
 	r.POST("/login", LoginHandler(db))
 	r.POST("/manages", GetArticlesHandler(db))
-	r.POST("/edit", NewArticleHandler(db))
-	// r.POST("/edit/:id", EditArticleHandler(db))
+	r.POST("/edit", EditArticleHandler(db))
+	r.POST("/delete/:id", DeleteArticleHandler(db))
 	r.Run(":3000")
 }
