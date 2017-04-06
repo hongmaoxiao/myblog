@@ -28,6 +28,7 @@
         })
         .then((res) => {
           if (res.status === 200) {
+            console.log("session", res);
             this.$router.push({name: "manages"});
           } else {
             alert("用户名或者密码错误！")

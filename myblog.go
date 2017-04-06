@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -116,7 +117,18 @@ func LoginHandler(db *gorm.DB) gin.HandlerFunc {
 			c.JSON(401, gin.H{"msg": "login fail"})
 			return
 		}
-		c.JSON(200, gin.H{"msg": "login success"})
+		session := sessions.Default(c)
+		var count int
+		v := session.Get("count")
+		if v == nil {
+			count = 0
+		} else {
+			count = v.(int)
+			count++
+		}
+		session.Set("count", count)
+		session.Save()
+		c.JSON(200, gin.H{"msg": "login success", "count": count})
 	}
 }
 func DeleteArticleHandler(db *gorm.DB) gin.HandlerFunc {
@@ -137,6 +149,9 @@ func DeleteArticleHandler(db *gorm.DB) gin.HandlerFunc {
 func main() {
 	r := gin.Default()
 	r.Use(static.Serve("/", static.LocalFile("./dist/static", true)))
+	// store, _ := sessions.NewRedisStore(10, "tcp", "localhost:6397", "", []byte("secret"))
+	store := sessions.NewCookieStore([]byte("secret"))
+	r.Use(sessions.Sessions("mysession", store))
 	db, err := gorm.Open("sqlite3", "./data.db")
 	if err != nil {
 		log.Println(err)
