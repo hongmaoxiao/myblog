@@ -42,7 +42,7 @@ func GetArticlesHandler(db *gorm.DB) gin.HandlerFunc {
 		}
 		db.AutoMigrate(&Article{})
 		var articles []Article
-		res := db.Find(&articles)
+		res := db.Order("created_at desc").Find(&articles)
 
 		if res.Error != nil {
 			c.JSON(401, gin.H{"msg": res.Error})
@@ -76,7 +76,7 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 		var next Article
 		db.Where("id > ?", id_int).First(&next)
 
-		c.JSON(200, gin.H{"article": res, "prev": prev.ID, "next": next.ID})
+		c.JSON(200, gin.H{"article": res, "prev": next.ID, "next": prev.ID})
 	}
 }
 func EditArticleHandler(db *gorm.DB) gin.HandlerFunc {
