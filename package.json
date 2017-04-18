@@ -1,14 +1,6 @@
 {
   "scripts": {
-    "test": "python ./runtests.py",
-    "cpfiles": "cp -r app/*.png app/*.txt app/*.ico app/*.html app/styles dist/static/;",
-    "cpd3": "cp node_modules/d3/d3.min.js dist/static/scripts/;",
-    "buildmain": "coffee -o dist/static/scripts -c app/scripts/main.coffee",
-    "buildpy": "cp -r server conf dist && find dist -name '*.pyc' -exec rm {} \\;",
-    "lib": "apt-get install build-essential python-dev libopus-dev libblas-dev liblapack-dev libatlas-base-dev redis-server",
-    "pip": "pip install tornado pymongo opuslib torndsession redis hiredis numpy scipy",
-    "clean": "rm -rf dist;mkdir -p dist/static/{scripts,styles}",
-    "build": "for i in clean buildpy buildmain cpd3 cpfiles; do npm run $i;done",
+    "build": "webpack",
     "dev": "webpack-dev-server --inline --hot"
   },
   "engines": {
@@ -55,27 +47,12 @@
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
-    "blueimp-file-upload": "^9.14.1",
-    "bootstrap": "^3.3.7",
-    "bootstrap-datepicker": "^1.6.4",
-    "bootstrap-fileinput": "^4.3.4",
-    "chalk": "^1.1.3",
-    "cropper": "^2.3.4",
-    "d3": "^4.2.7",
-    "echarts": "^3.4.0",
     "es6-promise": "^4.0.5",
-    "font-awesome": "^4.7.0",
     "github-markdown-css": "^2.4.1",
     "html5shiv": "^3.7.3",
     "jquery": "^1.11.3",
-    "jquery-datetimepicker": "^2.5.4",
-    "jquery.cookie": "^1.4.1",
     "lodash": "^4.16.4",
     "marked": "^0.3.6",
-    "masonry-layout": "^4.1.1",
-    "respond.js": "^1.4.2",
-    "select2": "^4.0.3",
-    "select2-bootstrap-theme": "0.1.0-beta.9",
     "vue": "^2.2.2",
     "vue-cookie": "^1.1.4",
     "vue-resource": "^1.2.1",
