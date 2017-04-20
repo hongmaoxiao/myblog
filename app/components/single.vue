@@ -18,7 +18,7 @@
     },
     computed: {
       parseMarkdown() {
-        return marked(this.rawarticle, { sanitize: true });
+        return marked(this.rawarticle, { sanitize: false });
       },
     },
     watch: {
