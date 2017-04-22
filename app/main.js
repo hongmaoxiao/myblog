@@ -33,6 +33,7 @@ const router = new VueRouter({
 const checkLogin = ['new', 'edit', 'manages'];
 
 router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
   const mysession = VueCookie.get('mysession');
   if (to.name === 'login' && mysession) {
     router.push('manages');
