@@ -1,8 +1,18 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <BackToTop />
   </div>
 </template>
+<script>
+  import BackToTop from 'components/backtotop';
+
+  export default {
+    components: {
+      BackToTop,
+    },
+  };
+</script>
 <style>
 *{
   margin: 0;
@@ -40,6 +50,7 @@ a:visited,
 a:hover,
 a:active{
   text-decoration: none;
+  background: "transparent";
 }
 
 #app{
