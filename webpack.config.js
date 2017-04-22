@@ -60,7 +60,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 20000,
-              name: '[name].[hash:7].[ext]'
+              name: '[name].[ext]'
             }
           },
         ]
