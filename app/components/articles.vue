@@ -8,14 +8,17 @@
         </li>
       </ul>
     </section>
+    <Foot />
   </section>
 </template>
 <script>
   import Common from './header';
+  import Foot from './footer';
 
   export default {
     components: {
       Common,
+      Foot,
     },
     data() {
       return {
@@ -34,11 +37,12 @@
 </script>
 <style>
 .articles-wrapper {
-  margin: 2em 10px;
+  min-height: 500px;
+  margin: 2em 10px 0;
   position: relative;
 }
 .items {
-  margin: 3em 10px;
+  margin: 3em 10px 0;
 }
 .articles {
   text-align: left;
@@ -65,7 +69,7 @@
 }
 @media screen and (max-width: 700px) {
   .articles-wrapper {
-    margin: 3em 10px;
+    margin: 3em 10px 0;
   }
 }
 </style>
