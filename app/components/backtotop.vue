@@ -33,6 +33,7 @@
     bottom: 40px;
     height: 50px;
     width: 50px;
+    border-radius: 50%;
     border: 1px solid #dcdcdc;
     display: flex;
     justify-content: center;
