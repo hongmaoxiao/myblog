@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist/static'),
-    filename: "[name].js"
+    filename: "[name].[hash:7].js"
   },
   resolve: {
     modules: [
