@@ -42,6 +42,6 @@
   }
   .back-icon {
     font-size: 30px;
-    color: #141415;
+    color: #b5b1b1;
   }
 </style>
