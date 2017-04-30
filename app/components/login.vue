@@ -2,7 +2,7 @@
   <section class="login">
     <form @submit.prevent="login">
       <p><label>用户名:</label><input v-model="username" name="username" placeholder="请输入用户名" required /></p>
-      <p><label>密码:</label><input v-model="password" name="password" placeholder="请输入密码" required /></p>
+      <p><label>密码:</label><input v-model="password" name="password" type="password" placeholder="请输入密码" required /></p>
       <p class="submit-wrapper">
         <input name="submit" type="submit" class="login-btn" value="登录" />
       </p>
