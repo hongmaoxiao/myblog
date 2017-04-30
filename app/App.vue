@@ -50,7 +50,6 @@ a:visited,
 a:hover,
 a:active{
   text-decoration: none;
-  background: "transparent";
 }
 
 #app{

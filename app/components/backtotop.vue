@@ -34,14 +34,13 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    border: 1px solid #dcdcdc;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: "transparent";
+    background: rgba(86, 85, 85, 0.7);
   }
   .back-icon {
     font-size: 30px;
-    color: #b5b1b1;
+    color: #fff;
   }
 </style>
