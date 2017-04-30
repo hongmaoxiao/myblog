@@ -4,8 +4,8 @@
       <router-link to="/manages" class="manages">返回管理主页</router-link>
     </p>
     <article class="edit-article">
-      <input class="title" v-model="title" placeholder="请输入文章标题">
-      <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300></textarea>
+      <input class="title" v-model="title" placeholder="请输入文章标题" @keyup="saveLocalStorage">
+      <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300 @keyup="saveLocalStorage"></textarea>
       <p class="parsed-article markdown-body pull-right" v-html="parseMarkdown"></p>
       <button @click="completeArticle" class="complete-article">提交</button>
     </article>
@@ -13,6 +13,7 @@
 </template>
 <script>
   import marked from 'marked';
+  import _ from 'lodash';
 
   export default {
     data() {
@@ -20,6 +21,7 @@
         title: '',
         rawarticle: '',
         id: '',
+        lastModifyTime: 0,
       };
     },
     computed: {
@@ -31,6 +33,7 @@
       "$route": "fetchData",
     },
     created() {
+      window.that = this;
       this.fetchData();
     },
     methods: {
@@ -44,9 +47,11 @@
           id: this.id,
         })
         .then((data) => {
-          console.log(data);
+          if (data.ok) {
+            alert("提交成功");
+          }
         }, (error) => {
-          console.log(error);
+          alert("提交失败", error);
         });
       },
       fetchData() {
@@ -55,12 +60,49 @@
           this.id = id;
           this.$http.get(`/article/${id}`)
             .then((data) => {
-              this.title = data.body.article.Title;
-              this.rawarticle = data.body.article.Content;
+              let article = data.body.article;
+              this.title = article.Title;
+              this.lastModifyTime = new Date(article.UpdatedAt).getTime();
+              const local = this.getLocalStorage('article');
+              console.log("this.lastModifyTime", this.lastModifyTime);
+              console.log("local.time", local.time);
+              if (local && local.title && local.title === article.Title && this.lastModifyTime <= local.time) {
+                this.rawarticle = local.content;
+              } else {
+                this.rawarticle = article.Content;
+              }
             }, (error) => {
               console.log(error);
             });
+        } else {
+          const local = this.getLocalStorage("article");
+          if (local && local.time) {
+            this.rawarticle = local.content;
+            this.title = local.title;
+          }
         }
+      },
+      saveLocalStorage: _.debounce(() => {
+        const local = window.that.getLocalStorage('article');
+        const has_local = !!local;
+        const if_title_or_content_modify = has_local ?
+        local.content !== window.that.rawarticle || local.title !== window.that.title :
+        false;
+        if (!has_local || if_title_or_content_modify) {
+          const save_obj = {
+            title: window.that.title,
+            content: window.that.rawarticle,
+            time: new Date().getTime()
+          }
+          localStorage.setItem("article", JSON.stringify(save_obj));
+        }
+      }, 2000),
+      getLocalStorage(key) {
+        const local = localStorage.getItem(key);
+        if (!local) {
+          return null;
+        }
+        return JSON.parse(local);
       }
     },
   };

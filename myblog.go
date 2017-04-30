@@ -31,6 +31,7 @@ type QueryArticle struct {
 	CreatedAt string
 	Title     string
 	Content   string
+	UpdatedAt  string
 }
 
 func GetArticlesHandler(db *gorm.DB) gin.HandlerFunc {
@@ -69,6 +70,7 @@ func GetSingleArticleHandler(db *gorm.DB) gin.HandlerFunc {
 		res.Title = article.Title
 		res.Content = article.Content
 		res.CreatedAt = article.CreatedAt.Format("2006-01-02")
+		res.UpdatedAt = article.UpdatedAt.Format("2006-01-02 15:04:05")
 
 		var prev Article
 		db.Where("id < ?", id_int).Last(&prev)

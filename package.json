@@ -51,7 +51,7 @@
     "github-markdown-css": "^2.4.1",
     "html5shiv": "^3.7.3",
     "jquery": "^1.11.3",
-    "lodash": "^4.16.4",
+    "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "vue": "^2.2.2",
     "vue-cookie": "^1.1.4",
