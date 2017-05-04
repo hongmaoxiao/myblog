@@ -4,10 +4,12 @@
       <router-link to="/manages" class="manages">返回管理主页</router-link>
     </p>
     <article class="edit-article">
-      <input class="title" v-model="title" placeholder="请输入文章标题" @keyup="saveLocalStorage">
-      <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300 @keyup="saveLocalStorage"></textarea>
+      <div class="edit-content-fixed">
+        <input class="title" v-model="title" placeholder="请输入文章标题" @keyup="saveLocalStorage">
+        <textarea class="raw-article pull-left" v-model="rawarticle" debounce=300 @keyup="saveLocalStorage"></textarea>
+        <button @click="completeArticle" class="complete-article">提交</button>
+      </div>
       <p class="parsed-article markdown-body pull-right" v-html="parseMarkdown"></p>
-      <button @click="completeArticle" class="complete-article">提交</button>
     </article>
   </section>
 </template>
@@ -64,8 +66,6 @@
               this.title = article.Title;
               this.lastModifyTime = new Date(article.UpdatedAt).getTime();
               const local = this.getLocalStorage('article');
-              console.log("this.lastModifyTime", this.lastModifyTime);
-              console.log("local.time", local.time);
               if (local && local.title && local.title === article.Title && this.lastModifyTime <= local.time) {
                 this.rawarticle = local.content;
               } else {
@@ -113,13 +113,29 @@
   margin: 0 auto;
   padding-bottom: 50px;
 }
+.edit-content-fixed {
+  position: fixed;
+  width: 44%;
+  left: 5%;
+  text-align: center;
+}
+
 .parsed-article,
 .raw-article {
-  width: 48.5%;
   border: 1px solid #ddd;
   padding: 20px;
   box-sizing: border-box;
 }
+
+.parsed-article {
+  width: 68%;
+  margin-right: -20%;
+}
+
+.raw-article {
+  width: 100%;
+}
+
 .title {
   display: block;
   margin-bottom: 20px;
@@ -130,10 +146,7 @@
 }
 .complete-article {
   padding: 3px 12px;
-  position: absolute;
-  left: 25%;
-  margin-left: -28px;
-  top: 580px;
+  margin-top: 20px;
 }
 .manages-wrapper {
   margin-bottom: 15px;
