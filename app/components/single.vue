@@ -78,13 +78,13 @@
 }
 .article {
   margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 0 3px 15px #ccc;
+  border: 1px solid #ddd;
+  padding: 20px;
 }
 .article-con {
   text-align: left;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 3px 15px #ccc;
 }
 .pagination {
   margin-top: 40px;
