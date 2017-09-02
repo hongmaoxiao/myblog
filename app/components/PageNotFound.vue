@@ -14,15 +14,27 @@
   bottom: 0;
   background: #e8e8e8;
 }
+
 .not-found-content {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(50%, 50%);
+  transform: translate(-50%, -50%);
   padding: 30px;
   background: #fff;
-  min-width: 200px;
+  min-width: 300px;
   min-height: 200px;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  .not-found-content {
+    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
+  }
 }
 </style>
