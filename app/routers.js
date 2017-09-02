@@ -31,9 +31,6 @@ const routers = [
     path: '/login',
     name: 'login',
     component: components.login,
-  }, {
-    path: '*',
-    redirect: '/',
   },
 ];
 export default routers;
