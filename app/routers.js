@@ -5,6 +5,7 @@ components.single = require('./components/single.vue');
 components.editarticle = require('./components/editarticle.vue');
 components.login = require('./components/login.vue');
 components.manages = require('./components/manages.vue');
+components.PageNotFound = require('./components/PageNotFound.vue');
 
 const routers = [
   {
@@ -31,6 +32,9 @@ const routers = [
     path: '/login',
     name: 'login',
     component: components.login,
+  }, {
+    path: '*',
+    component: components.PageNotFound,
   },
 ];
 export default routers;
