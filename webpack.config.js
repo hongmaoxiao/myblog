@@ -7,7 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var cssloader = 'style-loader!css-loader?importLoaders=1!postcss-loader';
 
 module.exports = {
-  devtool: 'cheap-source-map',
+  devtool: process.env.NODE_ENV = 'production' ? false : 'cheap-source-map',
   entry: {
     app: "./app/main.js"
   },
