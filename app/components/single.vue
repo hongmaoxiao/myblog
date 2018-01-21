@@ -56,11 +56,7 @@
       <article class="article">
         <h1 class="article-title">{{title}}</h1>
         <p class="created">
-          发表于：{{created}}
-          <span class="article-gap">|</span>
-          <span id="busuanzi_container_page_pv">
-            阅读量：<span id="busuanzi_value_page_pv"></span>
-          </span>
+          {{created}}
         </p>
         <p class="article-con markdown-body" v-html="parseMarkdown"></p>
       </article>
@@ -117,9 +113,6 @@
 }
 .next {
   margin-right: 50px;
-}
-.article-gap {
-  margin: 0 10px;
 }
 .comments {
   margin: 50px 10px;
