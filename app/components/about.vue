@@ -19,19 +19,6 @@
       <h2>开源</h2>
       <p>nowjs：now is a time toolkit for javascript.  <a href='https://github.com/hongmaoxiao/now'>https://github.com/hongmaoxiao/now</a></p>
     </section>
-    <!-- <section class="about" v-title :data-title=title>
-      <article class="article">
-        <h1 class="article-title">{{title}}</h1>
-        <p class="created">
-          {{created}}
-        </p>
-        <p class="article-con markdown-body" v-html="parseMarkdown"></p>
-      </article>
-      <div class="pagination clearfix">
-        <router-link class="prev pull-left" v-if="prev" :to="{name: 'article', params: {id: prev}}">前一篇</router-link>
-        <router-link class="next pull-right" v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
-      </div>
-    </section> -->
     <Foot />
   </section>
 </template>
@@ -45,16 +32,11 @@
       Common,
       Foot,
     },
-    data() {
-      return {
-        articles: [],
-      };
-    },
   };
 </script>
 <style>
 .about {
-  margin: 2em 10px;
+  margin: 2em 10px 5em;
   box-shadow: 0 3px 15px #ccc;
   border: 1px solid #ddd;
   padding: 20px;
