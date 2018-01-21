@@ -3,11 +3,13 @@
   import marked from 'marked';
   import Common from './header';
   import Foot from './footer';
+  import Loading from './loading';
   import VueDisqus from 'vue-disqus/VueDisqus.vue'
 
   export default {
     components: {
       Common,
+      Loading,
       VueDisqus,
       Foot,
     },
@@ -19,6 +21,7 @@
         prev: '',
         next: '',
         page_id: '',
+        loading: false,
       };
     },
     computed: {
@@ -35,8 +38,10 @@
     },
     methods: {
       fetchData() {
+        this.loading = true;
         this.$http.get(`/article/${this.$route.params.id}`)
           .then((data) => {
+            this.loading = false;
             this.title = data.body.article.Title;
             this.rawarticle = data.body.article.Content;
             this.created = data.body.article.CreatedAt;
@@ -52,7 +57,8 @@
 <template>
   <section>
     <Common />
-    <section class="articles-wrapper" v-title :data-title=title>
+    <Loading v-if="loading" />
+    <section class="articles-wrapper" v-title :data-title=title v-show="!loading">
       <article class="article">
         <h1 class="article-title">{{title}}</h1>
         <p class="created">
@@ -65,8 +71,8 @@
         <router-link class="next pull-right" v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
       </div>
     </section>
-    <div class="comments">
-      <vue-disqus shortname="fengxiaomao" :identifier="page_id" url="http://example.com/path"></vue-disqus>
+    <div class="comments" v-show="!loading">
+      <vue-disqus shortname="fengxiaomao" :identifier="page_id"></vue-disqus>
     </div>
     <Foot />
   </section>
