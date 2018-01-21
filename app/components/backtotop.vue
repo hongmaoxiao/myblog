@@ -1,7 +1,7 @@
 <template>
   <a href="javascript: void(0);" class="back-to-top" v-show="isscroll" @click="BackToTop()">
     <i class="back-icon">&uarr;</i>
-  </a href="javascript: void(0);">
+  </a>
 </template>
 <script>
   export default {

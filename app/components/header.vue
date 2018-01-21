@@ -5,7 +5,7 @@
     </router-link>
     <ul class="nav clearfix">
       <li class="nav-item">
-        <router-link to="/about" class="to-home">about</router-link>
+        <router-link to="/about" class="to-home">About</router-link>
       </li>
     </ul>
   </header>
