@@ -36,7 +36,7 @@
 </script>
 <style>
 .about {
-  margin: 2em 10px 5em;
+  margin: 3em 10px 5em;
   box-shadow: 0 3px 15px #ccc;
   border: 1px solid #ddd;
   padding: 20px;
