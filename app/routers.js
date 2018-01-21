@@ -6,6 +6,7 @@ components.editarticle = require('./components/editarticle.vue');
 components.login = require('./components/login.vue');
 components.manages = require('./components/manages.vue');
 components.PageNotFound = require('./components/PageNotFound.vue');
+components.about = require('./components/about.vue');
 
 const routers = [
   {
@@ -28,6 +29,10 @@ const routers = [
     path: '/manages',
     name: 'manages',
     component: components.manages,
+  }, {
+    path: '/about',
+    name: 'about',
+    component: components.about,
   }, {
     path: '/login',
     name: 'login',

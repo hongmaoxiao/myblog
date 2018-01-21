@@ -4,7 +4,9 @@
       <img src="../img/logo.jpg" class="logo" alt="logo" />
     </router-link>
     <ul class="nav clearfix">
-      <li class="nav-item"><a href="mailto:buaaxhm@gmail.com">联系我</a></li>
+      <li class="nav-item">
+        <router-link to="/about" class="to-home">about</router-link>
+      </li>
     </ul>
   </header>
 </template>

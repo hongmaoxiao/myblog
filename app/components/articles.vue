@@ -47,6 +47,7 @@
   text-align: left;
   border: 1px solid #ddd;
   box-shadow: 0 3px 15px #ccc;
+  list-style: none;
 }
 
 .articles > li {
