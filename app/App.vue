@@ -21,6 +21,7 @@
 }
 html{
   height: 100%;
+  font-size: 16px;
 }
 
 body{

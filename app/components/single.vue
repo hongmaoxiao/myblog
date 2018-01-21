@@ -22,6 +22,7 @@
         next: '',
         page_id: '',
         loading: false,
+        url: '',
       };
     },
     computed: {
@@ -33,7 +34,8 @@
       "$route": "fetchData",
     },
     created() {
-      this.page_id = `'${this.$route.params.id}'`;
+      this.page_id = `article/${this.$route.params.id}`;
+      this.url = `${window.location.host}/article/${this.page_id}`;
       this.fetchData();
     },
     methods: {
@@ -72,7 +74,7 @@
       </div>
     </section>
     <div class="comments" v-show="!loading">
-      <vue-disqus shortname="fengxiaomao" :identifier="page_id"></vue-disqus>
+      <vue-disqus shortname="fengxiaomao" :identifier="page_id" :url="url"></vue-disqus>
     </div>
     <Foot v-show="!loading" />
   </section>

@@ -57,17 +57,18 @@
 }
 
 .articles > li {
-  line-height: 3em;
   position: relative;
   text-align: left;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
+  padding: 10px 0;
 }
 .articles > li:last-child {
   border-bottom: 0;
 }
 .articles > li > a {
   padding: 0 15px;
+  line-height: 1.5em;
   display: block;
 }
 .articles > li:hover {
@@ -76,6 +77,9 @@
 @media screen and (max-width: 700px) {
   .articles-wrapper {
     margin: 3em 10px 0;
+  }
+  .articles > li > a {
+    padding: 0 10px;
   }
 }
 </style>
