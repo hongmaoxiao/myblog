@@ -35,7 +35,7 @@
     },
     created() {
       this.page_id = `article/${this.$route.params.id}`;
-      this.url = `${window.location.host}/article/${this.page_id}`;
+      this.url = window.location.href;
       this.fetchData();
     },
     methods: {
