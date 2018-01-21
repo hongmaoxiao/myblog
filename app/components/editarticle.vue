@@ -15,7 +15,7 @@
 </template>
 <script>
   import marked from 'marked';
-  import _ from 'lodash';
+  import debounce from 'lodash.debounce';
 
   export default {
     data() {
@@ -82,7 +82,7 @@
           }
         }
       },
-      saveLocalStorage: _.debounce(() => {
+      saveLocalStorage: debounce(() => {
         const local = window.that.getLocalStorage('article');
         const has_local = !!local;
         const if_title_or_content_modify = has_local ?
