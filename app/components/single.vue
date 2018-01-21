@@ -74,7 +74,7 @@
     <div class="comments" v-show="!loading">
       <vue-disqus shortname="fengxiaomao" :identifier="page_id"></vue-disqus>
     </div>
-    <Foot />
+    <Foot v-show="!loading" />
   </section>
 </template>
 <style scoped>

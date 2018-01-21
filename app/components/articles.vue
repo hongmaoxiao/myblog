@@ -1,33 +1,39 @@
 <template>
   <section>
     <Common />
-    <section class="articles-wrapper items" v-title>
+    <Loading v-if="loading" />
+    <section class="articles-wrapper items" v-title v-show="!loading">
       <ul class="articles">
         <li v-for="article in articles">
           <router-link :to="{ name: 'article', params: {id: article.ID} }">{{article.Title}}</router-link>
         </li>
       </ul>
     </section>
-    <Foot />
+    <Foot v-show="!loading" />
   </section>
 </template>
 <script>
   import Common from './header';
   import Foot from './footer';
+  import Loading from './loading';
 
   export default {
     components: {
       Common,
       Foot,
+      Loading,
     },
     data() {
       return {
         articles: [],
+        loading: false,
       };
     },
     mounted() {
+      this.loading = true;
       this.$http.get('/articles')
         .then((data) => {
+          this.loading = false;
           this.articles = data.body.articles;
         }, (error) => {
           console.log(error);
