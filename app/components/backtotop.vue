@@ -1,7 +1,5 @@
 <template>
-  <a href="javascript: void(0);" class="back-to-top" v-show="isscroll" @click="BackToTop()">
-    <i class="back-icon">&uarr;</i>
-  </a>
+  <span class="back-to-top" v-show="isscroll" @click="BackToTop()"></span>
 </template>
 <script>
   export default {
@@ -31,16 +29,21 @@
     position: fixed;
     right: 40px;
     bottom: 40px;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     background: rgba(86, 85, 85, 0.7);
   }
   .back-icon {
     font-size: 30px;
+    color: #fff;
+  }
+  .back-to-top:before {
+    content: '\2191';
     color: #fff;
   }
 </style>
