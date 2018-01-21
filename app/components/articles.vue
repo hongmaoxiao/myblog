@@ -37,7 +37,6 @@
 </script>
 <style>
 .articles-wrapper {
-  min-height: 500px;
   margin: 2em 10px 0;
   position: relative;
 }

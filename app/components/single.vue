@@ -3,10 +3,12 @@
   import marked from 'marked';
   import Common from './header';
   import Foot from './footer';
+  import VueDisqus from 'vue-disqus/VueDisqus.vue'
 
   export default {
     components: {
       Common,
+      VueDisqus,
       Foot,
     },
     data() {
@@ -16,6 +18,7 @@
         created: '',
         prev: '',
         next: '',
+        page_id: 0,
       };
     },
     computed: {
@@ -27,6 +30,7 @@
       "$route": "fetchData",
     },
     created() {
+      this.page_id = this.$route.params.id;
       this.fetchData();
     },
     methods: {
@@ -65,6 +69,9 @@
         <router-link class="next pull-right" v-if="next" :to="{name: 'article', params: {id: next}}">后一篇</router-link>
       </div>
     </section>
+    <div class="comments">
+      <vue-disqus shortname="fengxiaomao" :identifier="page_id" url="http://example.com/path"></vue-disqus>
+    </div>
     <Foot />
   </section>
 </template>
@@ -113,5 +120,11 @@
 }
 .article-gap {
   margin: 0 10px;
+}
+.comments {
+  margin: 50px 10px;
+  padding: 2rem;
+  box-shadow: 0 3px 15px #ccc;
+  box-sizing: border-box;
 }
 </style>
