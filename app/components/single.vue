@@ -18,7 +18,7 @@
         created: '',
         prev: '',
         next: '',
-        page_id: 0,
+        page_id: '',
       };
     },
     computed: {
@@ -30,7 +30,7 @@
       "$route": "fetchData",
     },
     created() {
-      this.page_id = this.$route.params.id;
+      this.page_id = `'${this.$route.params.id}'`;
       this.fetchData();
     },
     methods: {
