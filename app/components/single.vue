@@ -73,7 +73,7 @@
       </div>
     </section>
     <div class="comments" v-show="!loading">
-      <vue-disqus shortname="fengxiaomao" :identifier="page_id" :url="page_id"></vue-disqus>
+      <vue-disqus class="disqus" shortname="fengxiaomao" :identifier="page_id" :url="page_id"></vue-disqus>
     </div>
     <Foot v-show="!loading" />
   </section>
@@ -123,8 +123,10 @@
 }
 .comments {
   margin: 50px 10px;
-  padding: 2rem;
   box-shadow: 0 3px 15px #ccc;
   box-sizing: border-box;
+}
+.disqus {
+  padding: 2rem;
 }
 </style>
