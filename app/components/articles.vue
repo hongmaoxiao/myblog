@@ -4,7 +4,7 @@
     <Loading v-if="loading" />
     <section class="articles-wrapper items" v-title v-show="!loading">
       <ul class="articles">
-        <li v-for="article in articles">
+        <li v-for="article in articles" :key="article.ID">
           <router-link :to="{ name: 'article', params: {id: article.ID} }">{{article.Title}}</router-link>
         </li>
       </ul>
