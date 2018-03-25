@@ -1,5 +1,8 @@
 # 记录点东西
 
+觉得好的话右上角给个 `star` 呗，如果想第一时间知道我更新了什么文章，右上角 `watch` 走起。。。
+
+* [JavaScript EventEmitter](https://github.com/hongmaoxiao/myblog/issues/12)
 * [JavaScript30秒， 从入门到放弃之Array（七）](https://github.com/hongmaoxiao/myblog/issues/11)
 * [JavaScript30秒， 从入门到放弃之Array（六）](https://github.com/hongmaoxiao/myblog/issues/10)
 * [JavaScript30秒， 从入门到放弃之Array（五）](https://github.com/hongmaoxiao/myblog/issues/9)
@@ -11,3 +14,4 @@
 * [now.js 0.1.0 发布了](https://github.com/hongmaoxiao/myblog/issues/3)
 * [envoy源码学习](https://github.com/hongmaoxiao/myblog/issues/2)
 * [pip-pop源码学习](https://github.com/hongmaoxiao/myblog/issues/1)
+
