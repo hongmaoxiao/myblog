@@ -50,7 +50,7 @@
     "es6-promise": "^4.0.5",
     "github-markdown-css": "^2.4.1",
     "lodash.debounce": "^4.0.8",
-    "marked": "^0.3.6",
+    "marked": "0.3.19",
     "vue": "^2.2.2",
     "vue-cookie": "^1.1.4",
     "vue-disqus": "^2.0.4",
