@@ -27,7 +27,12 @@
     },
     computed: {
       parseMarkdown() {
-        return marked(this.rawarticle, { sanitize: false });
+        return marked(this.rawarticle, {
+          sanitize: false,
+          highlight: function(code) {
+            return require('highlight.js').highlightAuto(code).value;
+          },
+        });
       },
     },
     watch: {

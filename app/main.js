@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import VueCookie from 'vue-cookie';
 import app from './App.vue';
 import routers from './routers';
+import './style/highlight.css';
 
 const baseTitle = '冯小懋的个人博客';
 
