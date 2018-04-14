@@ -1,5 +1,4 @@
 <script>
-  import 'github-markdown-css';
   import marked from 'marked';
   import Common from './header';
   import Foot from './footer';

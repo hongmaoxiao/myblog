@@ -23,7 +23,7 @@
   </section>
 </template>
 <script>
-  import 'github-markdown-css';
+  // import 'github-markdown-css';
   import Common from './header';
   import Foot from './footer';
 
