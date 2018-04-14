@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "es6-promise": "^4.0.5",
-    "github-markdown-css": "^2.4.1",
+    "github-markdown-css": "2.10.0",
     "lodash.debounce": "^4.0.8",
     "marked": "0.3.19",
     "vue": "^2.2.2",
