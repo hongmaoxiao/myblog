@@ -85,7 +85,10 @@ module.exports = {
         template: path.resolve(__dirname, 'app/index.html'),
         inject: true
       }),
-    new ExtractTextPlugin("[name]-[hash].css")
+    new ExtractTextPlugin("[name]-[hash].css"),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
