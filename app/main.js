@@ -28,6 +28,7 @@ Vue.directive('title', {
 const App = Vue.extend(app);
 
 const router = new VueRouter({
+  mode: 'history',
   routes: routers,
   saveScrollPosition: true,
 });
