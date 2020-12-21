@@ -1,11 +1,10 @@
 <template>
   <div class="pay">
-
   </div>
 </template>
 <style scoped>
   .pay {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: row;

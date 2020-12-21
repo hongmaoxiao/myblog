@@ -2,7 +2,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --inline --hot",
-    "push": "yarn build && scp -r dist/* root@47.112.141.59:/var/www/dist"
+    "push": "rm -rf dist && yarn build && scp -r dist/* root@47.112.141.59:/var/www/dist"
   },
   "engines": {
     "node": ">= 4.0.0",

@@ -39,7 +39,7 @@ const routers = [
     name: 'login',
     component: components.login,
   }, {
-    path: '/wxpay/pay',
+    path: '/pay',
     name: 'pay',
     component: components.pay,
   }, {
