@@ -7,6 +7,7 @@ components.login = require('./components/login.vue');
 components.manages = require('./components/manages.vue');
 components.PageNotFound = require('./components/PageNotFound.vue');
 components.about = require('./components/about.vue');
+components.pay = require('./components/pay.vue');
 
 const routers = [
   {
@@ -37,6 +38,10 @@ const routers = [
     path: '/login',
     name: 'login',
     component: components.login,
+  }, {
+    path: '/wxpay/pay',
+    name: 'pay',
+    component: components.pay,
   }, {
     path: '*',
     component: components.PageNotFound,
