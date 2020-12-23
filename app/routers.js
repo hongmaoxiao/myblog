@@ -39,7 +39,7 @@ const routers = [
     name: 'login',
     component: components.login,
   }, {
-    path: '/pay',
+    path: '/order/payresult',
     name: 'pay',
     component: components.pay,
   }, {
