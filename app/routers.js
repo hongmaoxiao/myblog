@@ -44,9 +44,15 @@ const routers = [
     name: 'pay',
     component: components.pay,
   }, {
-    path: '/share/:bgc/:content/:title/:author',
+    path: '/share',
     name: 'share',
     component: components.share,
+    props: route => ({
+      bgc: route.query.bgc,
+      content: route.query.content,
+      title: route.query.title,
+      author: route.query.author,
+    }),
   }, {
     path: '*',
     component: components.PageNotFound,

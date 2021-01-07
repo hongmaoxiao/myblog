@@ -8,32 +8,7 @@
 </template>
 <script>
   export default {
-    data() {
-      return {
-        bgc: '',
-        content: '',
-        title: '',
-        author: '',
-      };
-    },
-    mounted() {
-      this.initParams();
-    },
-    methods: {
-      initParams() {
-        const {
-          bgc,
-          content,
-          title,
-          author,
-        } = this.$route.params
-
-        this.bgc = bgc;
-        this.content = content;
-        this.title = title;
-        this.author = author;
-      }
-    }
+    props: ['bgc', 'content', 'title', 'author'],
   };
 </script>
 <style>
