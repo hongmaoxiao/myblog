@@ -8,6 +8,7 @@ components.manages = require('./components/manages.vue');
 components.PageNotFound = require('./components/PageNotFound.vue');
 components.about = require('./components/about.vue');
 components.pay = require('./components/pay.vue');
+components.share = require('./components/share.vue');
 
 const routers = [
   {
@@ -39,9 +40,13 @@ const routers = [
     name: 'login',
     component: components.login,
   }, {
-    path: '/order/payresult',
+    path: '/api/order/payresult',
     name: 'pay',
     component: components.pay,
+  }, {
+    path: '/share/:bgc/:content/:title/:author',
+    name: 'share',
+    component: components.share,
   }, {
     path: '*',
     component: components.PageNotFound,
