@@ -1,54 +1,78 @@
 <template>
-  <section>
-    <div>{{bgc}}</div>
-    <div>{{content}}</div>
-    <div>{{title}}</div>
-    <div>{{author}}</div>
+  <section v-bind:style="styleObject" class='wrapper'>
+    <div class="author">
+      {{authorInfo}}
+    </div>
+    <div class="content">
+      <div v-for="item in contentList" :key="item" class="contentText">
+        {{item}}
+      </div>
+    </div>
   </section>
 </template>
 <script>
+  import compact from 'lodash.compact'
   export default {
-    props: ['bgc', 'content', 'title', 'author'],
-  };
+    props: ['bgc', 'color', 'content', 'title', 'author'],
+    data() {
+      return {
+      }
+    },
+    computed: {
+      styleObject() {
+        return {
+          color: `#${this.color}`,
+          backgroundColor: `#${this.bgc}`,
+        }
+      },
+      contentList() {
+        return this.content && this.content.split('|') || []
+      },
+      authorInfo() {
+        return compact([this.title, this.author]).join(' • ')
+      }
+    }
+  }
 </script>
 <style>
-.about {
-  margin: 3em 10px 5em;
-  box-shadow: 0 3px 15px #ccc;
-  border: 1px solid #ddd;
-  padding: 20px;
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 50px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
 }
-.new-wrapper {
-  margin-bottom: 15px;
-  text-align: right;
+.content {
+  font-size: 30px;
+  flex: 1;
+  height: 100%;
+  writing-mode: vertical-rl;
+  text-align: start;
 }
-.new {
-  background: #73e043;
+
+.contentText {
+  text-align: start;
+  writing-mode: vertical-rl;
+  line-height: 1.4em;
 }
-.edit {
-  background: #969696;
+
+.author {
+  font-size: 24px;
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  writing-mode: vertical-rl;
 }
-.delete {
-  background: #f13030;
-}
-.btn-like {
-  padding: 6px 15px;
-  border-radius: 15px;
-  color: #fff;
-  cursor: pointer;
-}
-.edit-articles > li {
-  cursor: default;
-}
-.title {
-  padding-left: 15px;
-}
-.edit-link {
-  margin-right: 10px;
-}
-.edit-handle {
+
+.authorText {
+  writing-mode: vertical-rl;
   display: inline-block;
-  vertical-align: middle;
-  float: right;
 }
 </style>

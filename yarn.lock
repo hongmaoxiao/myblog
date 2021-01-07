@@ -3409,6 +3409,11 @@ lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "http://registry.npm.taobao.org/lodash.clonedeep/download/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
+lodash.compact@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/lodash.compact/download/lodash.compact-3.0.1.tgz#540ce3837745975807471e16b4a2ba21e7256ca5"
+  integrity sha1-VAzjg3dFl1gHRx4WtKK6IeclbKU=
+
 lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "http://registry.npm.taobao.org/lodash.cond/download/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
