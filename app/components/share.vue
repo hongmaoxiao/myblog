@@ -20,9 +20,10 @@
     },
     computed: {
       styleObject() {
+        const bgc = this.bgc === 'transparent' ? 'transparent' : `#${this.bgc}`
         return {
           color: `#${this.color}`,
-          backgroundColor: `#${this.bgc}`,
+          backgroundColor: bgc,
         }
       },
       contentList() {
