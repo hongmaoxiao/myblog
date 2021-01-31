@@ -53,6 +53,9 @@ const routers = [
       title: route.query.title,
       author: route.query.author,
       color: route.query.color,
+      blur: route.query.blur,
+      image: route.query.image,
+      tid: route.query.tid,
     }),
   }, {
     path: '*',
