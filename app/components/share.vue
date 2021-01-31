@@ -56,7 +56,7 @@
       Tp1,
       Tp2,
     },
-    props: ['bgc', 'color', 'content', 'title', 'author', 'blur', 'image', 'tid', 'fontfamily'],
+    props: ['bgc', 'color', 'content', 'title', 'author', 'blur', 'image', 'tid', 'font'],
     data() {
       return {
       }
@@ -67,7 +67,7 @@
         return {
           color: `#${this.color}`,
           backgroundColor: bgc,
-          fontFamily: this.fontfamily
+          fontFamily: this.font
         }
       },
       contentList() {
@@ -81,6 +81,9 @@
 </script>
 <style>
 .wrapper {
+  font-family: TChinese, SimSun, FangSong, STSong, STZhongsong, LiSu, KaiTi, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+  Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+  sans-serif;
   width: 414px;
   margin: 0;
   padding: 0;
@@ -90,4 +93,9 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+/* .defaultFont {
+  font-family: TChinese, SimSun, FangSong, STSong, STZhongsong, LiSu, KaiTi, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+  Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+  sans-serif;
+} */
 </style>

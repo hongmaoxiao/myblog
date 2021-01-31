@@ -28,7 +28,7 @@ body{
   position: relative;
   zoom: 1;
   height: 100%;
-  margin: auto;
+  /* margin: auto; */
 }
 @media screen and (max-width: 700px) {
   body {

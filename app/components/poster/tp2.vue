@@ -36,8 +36,8 @@
     computed: {
       imageStyle() {
         return {
-          filter: `blur(${this.blur || 0})px`,
-          '-webkit-filter': `blur(${this.blur || 0})px`,
+          filter: `blur(${this.blur || 0}px)`,
+          '-webkit-filter': `blur(${this.blur || 0}px)`,
         }
       }
     },
@@ -55,6 +55,7 @@
   margin: 0;
   position: relative;
   overflow: hidden;
+  background-color: #ffffff;
 }
 .image {
   width: 100%;
