@@ -81,9 +81,6 @@
 </script>
 <style>
 .wrapper {
-  font-family: TChinese, SimSun, FangSong, STSong, STZhongsong, LiSu, KaiTi, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-  Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
-  sans-serif;
   width: 414px;
   margin: 0;
   padding: 0;

@@ -1,5 +1,5 @@
 <template>
-  <section class="tp1">
+  <section class="tp1" id='poster'>
     <div class="author">
       {{author}}
     </div>

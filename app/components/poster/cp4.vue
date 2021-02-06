@@ -1,5 +1,5 @@
 <template>
-  <section class="tp2">
+  <section class="tp2" id='poster'>
     <img :src="image" alt="posterbg" class="image">
     <div class="contentWrapper">
       <div class="poemVertical">

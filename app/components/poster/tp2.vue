@@ -1,7 +1,7 @@
 <template>
-  <section class="tp2">
+  <section class="tp2" id='poster'>
     <img
-      :src="image"
+      :src="imgUrl"
       alt="posterbg"
       class="image"
       :style='imageStyle'
@@ -34,6 +34,12 @@
       };
     },
     computed: {
+      imgUrl() {
+        console.log('process.env.BASE_URL: ', process.env.BASE_URL)
+        // const url = `${process.env.BASE_URL}/tpl/${this.image}.png`
+        const url = 'https://poem.fengxiaomao.com/2f472ce78b9294569de51ef263e25711?e=4734147487&token=C4V1LUiqHJXmvGKUjGWOH8oOmZ1KCeFOWWr-C9CX:Jxconpnpx9m2RxpIVhHY3ge7yws='
+        return url
+      },
       imageStyle() {
         return {
           filter: `blur(${this.blur || 0}px)`,
